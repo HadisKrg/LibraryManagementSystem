@@ -35,7 +35,6 @@ public class Main {
         memberRepository.registerMember(member3);
 
 
-
         while (true) {
             System.out.println(
                     "1. Update the price of a book.  \n" +
@@ -50,21 +49,33 @@ public class Main {
                     int id = scanner.nextInt();
                     System.out.println("Enter price:");
                     double price = scanner.nextDouble();
+                    try {
                         bookRepository.updatePrice(id, price);
+                    } catch (BookNotFoundException e) {
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 }
 
                 case 2: {
                     System.out.println("Enter id:");
                     int id = scanner.nextInt();
+                    try{
                     bookRepository.delete(id);
+                    }catch (BookNotFoundException e){
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 }
 
                 case 3: {
                     System.out.println("Enter id:");
                     int id = scanner.nextInt();
+                    try {
                         memberRepository.deleteMember(id);
+                    }catch (MemberNotFoundException e){
+                        System.out.println(e.getMessage());
+                    }
                     break;
                 }
                 case 4:
